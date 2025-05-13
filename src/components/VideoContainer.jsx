@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMostPopularVideos } from "../utils/slice";
 import { mostPopularVideosData } from "../mockData/mostPopular";
 import { Link, useLocation } from "react-router-dom";
+import { Shimmer } from "react-shimmer";
 
 export const VideoContainer = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,10 @@ export const VideoContainer = () => {
     getMostPopularVideos();
   }, []);
 
-  if (!mostPopularVideos || !mostPopularVideos.length)
-    return "Loading data... ";
+  if (mostPopularVideos == undefined)
+    return <Shimmer className="h-screen w-screen" />
+
+  if(mostPopularVideos.length == 0) return <div>No data found.</div>
 
   return (
     <div className={!isWatchPage ? "grid grid-cols-4 gap-4 py-4":"py-4"}>
