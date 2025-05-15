@@ -4,6 +4,7 @@ import { closeSideMenu } from "../utils/slice";
 import { useSearchParams } from "react-router-dom";
 import { mostPopularVideosData } from "../mockData/mostPopular";
 import { VideoContainer } from "./VideoContainer";
+import { CommentsContainer } from "./CommentsContainer";
 
 export const WatchPage = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export const WatchPage = () => {
           <div className="mx-2 my-auto">{videoDetails?.snippet.channelTitle}</div>
         </div>
         <div className="my-2 text-l w-180">{videoDetails?.snippet.description}</div>
+        <CommentsContainer />
       </div>
       <div className="watch-page-side-container px-5">
         <VideoContainer />
